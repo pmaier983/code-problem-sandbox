@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    // "strict": true, // Enable when You have cleaned up the (any)'s
+    "module": "commonjs",
+     // Could possibly cause issues in the future, consider choosing a specific release
+    "target": "ESNext",
+    "moduleResolution": "node",
+    // "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "typeRoots": ["./node_modules/@types"],
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
