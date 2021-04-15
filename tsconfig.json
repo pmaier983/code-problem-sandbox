@@ -2,7 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     // "strict": true, // Enable when You have cleaned up the (any)'s
-    "module": "commonjs",
+    "module": "esnext",
      // Could possibly cause issues in the future, consider choosing a specific release
     "target": "ESNext",
     "moduleResolution": "node",
