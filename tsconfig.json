@@ -2,14 +2,15 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     // "strict": true, // Enable when You have cleaned up the (any)'s
-    "module": "esnext",
+    "module": "CommonJS",
      // Could possibly cause issues in the future, consider choosing a specific release
     "target": "ESNext",
     "moduleResolution": "node",
-    // "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
+    "declaration": true,
     "removeComments": true,
     "typeRoots": ["./node_modules/@types"],
   },
