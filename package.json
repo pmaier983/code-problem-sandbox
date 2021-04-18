@@ -4,7 +4,9 @@
   "description": "A Sandbox for Phillip Maier to play in",
   "main": "helloWorld.ts",
   "scripts": {
-    "dev": "tsnd --files --respawn ./src/helloWorld.ts"
+    "dev": "tsnd --files --respawn ./src/helloWorld.ts",
+    "debug": "tsnd --inspect=9210 --files --respawn ./src/helloWorld.ts",
+    "lint": "eslint . --fix"
   },
   "author": "Phillip Maier",
   "license": "ISC",
