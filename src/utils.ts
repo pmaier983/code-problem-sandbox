@@ -56,3 +56,51 @@ export const toArray = (
   }
   return res
 }
+
+export class Heap<HeapNode = number> {
+  heapArray: HeapNode[]
+  constructor() {
+    this.heapArray = []
+  }
+
+  trickleDown(i = 0): void {
+    const { heapArray } = this
+    const leftIndex = i * 2 + 1
+    const rightIndex = i * 2 + 2
+    let min = i
+    if (leftIndex < heapArray.length && heapArray[leftIndex] > heapArray[min])
+      min = leftIndex
+    if (rightIndex < heapArray.length && heapArray[rightIndex] > heapArray[min])
+      min = rightIndex
+
+    if (min !== i) {
+      this.swap(i, min)
+      this.trickleDown(min)
+    }
+  }
+
+  add(node: HeapNode): void {
+    this.heapArray.unshift(node)
+    this.trickleDown()
+  }
+
+  swap(i: number, j: number): void {
+    ;[this.heapArray[i], this.heapArray[j]] = [
+      this.heapArray[j],
+      this.heapArray[i],
+    ]
+  }
+
+  peak(): HeapNode {
+    return this.heapArray?.[0]
+  }
+
+  shift(): HeapNode {
+    const { heapArray } = this
+    if (heapArray.length === 0) return
+    this.swap(0, heapArray.length - 1)
+    const first = this.heapArray.pop()
+    this.trickleDown()
+    return first
+  }
+}
