@@ -63,25 +63,37 @@ export class Heap<HeapNode = number> {
     this.heapArray = []
   }
 
+  compare(val1: number, val2: number): boolean {
+    return this.heapArray[val1] > this.heapArray[val2]
+  }
+
   trickleDown(i = 0): void {
     const { heapArray } = this
     const leftIndex = i * 2 + 1
     const rightIndex = i * 2 + 2
-    let min = i
-    if (leftIndex < heapArray.length && heapArray[leftIndex] > heapArray[min])
-      min = leftIndex
-    if (rightIndex < heapArray.length && heapArray[rightIndex] > heapArray[min])
-      min = rightIndex
+    let focus = i
+    if (leftIndex < heapArray.length && this.compare(leftIndex, focus))
+      focus = leftIndex
+    if (rightIndex < heapArray.length && this.compare(rightIndex, focus))
+      focus = rightIndex
 
-    if (min !== i) {
-      this.swap(i, min)
-      this.trickleDown(min)
+    if (focus !== i) {
+      this.swap(i, focus)
+      this.trickleDown(focus)
+    }
+  }
+
+  bubbleUp(i: number): void {
+    const parent = Math.floor((i - 1) / 2)
+    if (parent >= 0 && this.compare(i, parent)) {
+      this.swap(i, parent)
+      this.bubbleUp(parent)
     }
   }
 
   add(node: HeapNode): void {
-    this.heapArray.unshift(node)
-    this.trickleDown()
+    this.heapArray.push(node)
+    this.bubbleUp(this.heapArray.length - 1)
   }
 
   swap(i: number, j: number): void {
@@ -97,7 +109,6 @@ export class Heap<HeapNode = number> {
 
   shift(): HeapNode {
     const { heapArray } = this
-    if (heapArray.length === 0) return
     this.swap(0, heapArray.length - 1)
     const first = this.heapArray.pop()
     this.trickleDown()
