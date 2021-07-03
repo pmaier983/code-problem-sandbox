@@ -107,7 +107,7 @@ export class Heap<HeapNode = number> {
     return this.heapArray?.[0]
   }
 
-  pop(): HeapNode {
+  shift(): HeapNode {
     const { heapArray } = this
     this.swap(0, heapArray.length - 1)
     const first = this.heapArray.pop()
